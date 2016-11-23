@@ -6,18 +6,24 @@ from bs4 import BeautifulSoup
 def get_html(url):
     response = urllib.request.urlopen(url)
     return response.read()
-
+cases = []
 def parse(html):
     soup = BeautifulSoup(html, 'html.parser')
-    table = soup.find('div', {"class": "Search-wrapper"})
-    
-    cases = []
+    table = soup.find('div', {"Search-list"})
 
-    for row in table.find_all('div', {'Search-item-1'}):
-        cols = row.find_all('div', {'Search-item-option'})    
-        print(cols)
+    for rows in table.find_all('div', {'Search-result-item'}):
+        cols = rows.find_all('div', {'Search-item-option'})
         
+        cases.append({
+            'title': cols[0].a.text,
+            'price': [price.text for price in cols[0].div.find('span', 'Search-item-label')]            
+        })
         
+    for case in cases:
+        print(case)
+    
+        
+           
 
 
 def main():
