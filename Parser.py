@@ -9,15 +9,19 @@ def get_html(url):
 
 def parse(html):
     soup = BeautifulSoup(html, 'html.parser')
-    table = soup.find('div', {"class": "Search-list"})
+    table = soup.find('div', {"class": "Search-wrapper"})
     
-    for row in table.find_all('div', {'Search-result-item'}):
-        cols = row.find_all('a')    
+    cases = []
+
+    for row in table.find_all('div', {'Search-item-1'}):
+        cols = row.find_all('div', {'Search-item-option'})    
         print(cols)
-    
+        
+        
+
 
 def main():
-    parse(get_html('https://fabrikant.ru/trades/procedure/search/?type=1&query=&procedure_stage=2&price_from=&price_to=&currency=0&date_type=date_publication&date_from=&date_to=&ensure=all&count_on_page=10&order_by=default&order_direction=1'))
+    parse(get_html('https://fabrikant.ru/trades/procedure/search/?type=1&query=&procedure_stage=2&price_from=&price_to=&currency=0&date_type=date_publication&date_from=&date_to=&ensure=all&section_type%5B%5D=ds300&count_on_page=10&order_by=default&order_direction=1'))
 
 if __name__ == "__main__":
     main()
