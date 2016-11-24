@@ -16,7 +16,7 @@ def parse(html):
         
         cases.append({
             'title': cols[0].a.text,
-            'price': [price.text for price in cols[0].div.find('span', 'Search-item-label')]            
+            #'price': [price.text for price in cols[0].div.find('span', 'Search-item-label')]            
         })
         
     for case in cases:
