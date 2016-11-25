@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 import urllib.request
 from bs4 import BeautifulSoup
+import re
 
 
 def get_html(url):
@@ -13,12 +13,14 @@ def parse(html):
 
     for rows in table.find_all('div', {'Search-result-item'}):
         cols = rows.find_all('div', {'Search-item-option'})
-        
+               
         cases.append({
             'title': cols[0].a.text,
-            #'price': [price.text for price in cols[0].div.find('span', 'Search-item-label')]            
+            'link': cols[0].select('a'),
+            'price': re.sub(r'\s+', ' ', cols[1].text)
+            #[price.text for price in cols[0].div.find('span', 'Search-item-label')]            
         })
-        
+       
     for case in cases:
         print(case)
     
