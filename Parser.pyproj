@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>73ca0daa-a3e4-4b1c-aabd-25839a2ba654</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Parser.py</StartupFile>
+    <StartupFile>module1.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
