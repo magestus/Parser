@@ -7,6 +7,8 @@ def get_html(url):
     response = urllib.request.urlopen(url)
     return response.read()
 cases = []
+
+
 def parse(html):
     soup = BeautifulSoup(html, 'html.parser')
     table = soup.find('div', {"Search-list"})
@@ -18,14 +20,11 @@ def parse(html):
             'title': cols[0].a.text,
             'link': cols[0].select('a'),
             'price': re.sub(r'\s+', ' ', cols[1].text)
-            #[price.text for price in cols[0].div.find('span', 'Search-item-label')]            
+            #[price.text for price in cols[0].div.find('span', 'Search-item-label')]
         })
        
     for case in cases:
         print(case)
-    
-        
-           
 
 
 def main():
